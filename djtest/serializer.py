@@ -16,5 +16,11 @@ class ApiSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class NftSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.NftToken
+        fields = '__all__'
+
+
 if __name__ == '__main__':
     pass

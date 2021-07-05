@@ -40,3 +40,17 @@ class Api(models.Model):
 
     class Meta:
         ordering = ['updatetime']
+
+
+class NftToken(models.Model):
+    """
+    为NFT项目提供baseURI
+    """
+    name = models.CharField(verbose_name='名称', max_length=50, default='ColorNFT')
+    description = models.CharField(verbose_name='描述', max_length=255)
+    image = models.CharField(verbose_name='图片地址', max_length=254, default='')
+    ceratetime = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
+    updatetime = models.DateTimeField(verbose_name='更新时间')
+
+    class Meta:
+        ordering = ['updatetime']

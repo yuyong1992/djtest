@@ -13,3 +13,8 @@ class ModuleView(viewsets.ModelViewSet):
 class ApiView(viewsets.ModelViewSet):
     queryset = models.Api.objects.all()
     serializer_class = serializer.ApiSerializer
+
+
+class NftView(viewsets.ModelViewSet):
+    queryset = models.NftToken.objects.all()
+    serializer_class = serializer.NftSerializer

@@ -78,7 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djtest',
-        'HOST': '192.168.31.244',
+        'HOST': '192.168.28.247',
         'PORT': 3306,
         'USER': 'root',
         'PASSWORD': '123456',
