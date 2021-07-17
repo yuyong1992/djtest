@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-muzy@f2ish6_1a%_k2!hf%ek6=o^9#55-*r6tcq=7izgvdkxtn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# DEBUG = True
+# DEBUG = False
+DEBUG = True
 
 # product
 # ALLOWED_HOSTS = ['47.94.4.177']
@@ -77,28 +77,28 @@ WSGI_APPLICATION = 'djproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'djtest',
-#         'HOST': '127.0.0.1',
-#         'PORT': 3306,
-#         'USER': 'root',
-#         'PASSWORD': '123456',
-#     }
-# }
-
-# product
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djtest',
-        'HOST': '47.94.4.177',
+        'HOST': '127.0.0.1',
         'PORT': 3306,
         'USER': 'root',
-        'PASSWORD': '1234qwer.yy',
+        'PASSWORD': '123456',
     }
 }
+
+# product
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'djtest',
+#         'HOST': '47.94.4.177',
+#         'PORT': 3306,
+#         'USER': 'root',
+#         'PASSWORD': '1234qwer.yy',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

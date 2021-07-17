@@ -27,9 +27,9 @@ DEBUG = False
 # DEBUG = True
 
 # product
-# ALLOWED_HOSTS = ['47.94.4.177']
+ALLOWED_HOSTS = ['47.94.4.177']
 # # develop
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
