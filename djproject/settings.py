@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from common.readConf import ReadConf
+import logging
+import os
+
+
+logger = logging.getLogger('settings')
+conf = ReadConf()
+env = conf.get_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,14 +30,52 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-muzy@f2ish6_1a%_k2!hf%ek6=o^9#55-*r6tcq=7izgvdkxtn'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 # DEBUG = True
+
+if env == 'dev':
+    # logger.debug('当前环境为，Env：{}'.format(env))
+    logger.info('当前环境为，Env：{}'.format(env))
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+
+    ALLOWED_HOSTS = ['*']
+
+    # Database
+    # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'djtest',
+            'HOST': '127.0.0.1',
+            'PORT': 3306,
+            'USER': 'root',
+            'PASSWORD': '123456',
+        }
+    }
+elif env == 'release':
+    # logger.info('当前环境为，Env：{}'.format(env))
+    DEBUG = False
+
+    ALLOWED_HOSTS = ['47.94.4.177']
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'djtest',
+            'HOST': '47.94.4.177',
+            'PORT': 3306,
+            'USER': 'root',
+            'PASSWORD': '1234qwer.yy',
+        }
+    }
+else:
+    logger.error('未知的环境，ENV：{}'.format(env))
+
 
 # product
 # ALLOWED_HOSTS = ['47.94.4.177']
 # # develop
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -89,16 +135,16 @@ WSGI_APPLICATION = 'djproject.wsgi.application'
 # }
 
 # product
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djtest',
-        'HOST': '47.94.4.177',
-        'PORT': 3306,
-        'USER': 'root',
-        'PASSWORD': '1234qwer.yy',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'djtest',
+#         'HOST': '47.94.4.177',
+#         'PORT': 3306,
+#         'USER': 'root',
+#         'PASSWORD': '1234qwer.yy',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -137,6 +183,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
+#
+# STATIC_ROOT = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

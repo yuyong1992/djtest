@@ -17,13 +17,19 @@ RUN mkdir -p /var/www/html/djproject
 WORKDIR /var/www/html/djproject
 
 # 将当前目录文件加入到容器工作目录中（. 表示当前宿主机目录）
-ADD . /var/www/html/djproject
+#ADD . /var/www/html/djproject/
+COPY . /var/www/html/djproject
 
 # 使用pip安装依赖
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt \
+    && sed -i 's/\r//' ./start.sh \
+    && chmod +x ./start.sh
 
 # Windows环境下编写的start.sh每行命令结尾有多余的\r字符，需移除。
 RUN sed -i 's/\r//' ./start.sh
 
 # 设置start.sh文件可执行权限
 RUN chmod +x ./start.sh
+
+# docker启动，运行项目启动脚本
+CMD sh start.sh
